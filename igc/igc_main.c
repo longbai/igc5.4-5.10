@@ -17,6 +17,20 @@
 #include "igc_hw.h"
 #include "igc_tsn.h"
 
+
+// backport from 5.10 kernel header
+// from https://github.com/torvalds/linux/blob/v5.10/include/linux/pm.h, which change name
+#define DPM_FLAG_NO_DIRECT_COMPLETE DPM_FLAG_NEVER_SKIP
+
+// from https://github.com/torvalds/linux/blob/v5.10/include/linux/netdevice.h#L2206
+static inline void net_prefetch(void *p)
+{
+        prefetch(p);
+#if L1_CACHE_BYTES < 128
+        prefetch((u8 *)p + L1_CACHE_BYTES);
+#endif
+}
+
 #define DRV_SUMMARY	"Intel(R) 2.5G Ethernet Linux Driver"
 
 #define DEFAULT_MSG_ENABLE (NETIF_MSG_DRV | NETIF_MSG_PROBE | NETIF_MSG_LINK)
