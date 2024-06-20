@@ -1,5 +1,5 @@
 # igc5.4-5.10
-intel i225/226 driver backport from 5.10 to 5.4
+intel i225/226 driver backport from 5.10 to 5.4, add 226 hardware id from 6.9
 
 from https://github.com/torvalds/linux/tree/v5.10/drivers/net/ethernet/intel/igc
 
