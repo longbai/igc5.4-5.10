@@ -11,6 +11,8 @@ compile with kernel-dev 5.4
 yum --enablerepo=extras install centos-release-scl-rh
 yum install devtoolset-9-gcc
 scl enable devtoolset-9 bash
+# 永久
+# source /opt/rh/devtoolset-9/enable
 ```
 # compile 
 ```
