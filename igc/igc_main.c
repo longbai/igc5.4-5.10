@@ -32,6 +32,7 @@ static inline void net_prefetch(void *p)
 }
 
 #define DRV_SUMMARY	"Intel(R) 2.5G Ethernet Linux Driver-Mod"
+#define DRV_VERSION "0.1.0"
 
 #define DEFAULT_MSG_ENABLE (NETIF_MSG_DRV | NETIF_MSG_PROBE | NETIF_MSG_LINK)
 
@@ -39,6 +40,7 @@ static int debug = -1;
 
 MODULE_AUTHOR("Intel Corporation, <linux.nics@intel.com>");
 MODULE_DESCRIPTION(DRV_SUMMARY);
+MODULE_VERSION(DRV_VERSION);
 MODULE_LICENSE("GPL v2");
 module_param(debug, int, 0);
 MODULE_PARM_DESC(debug, "Debug level (0=none,...,16=all)");
@@ -4169,20 +4171,20 @@ bool igc_has_link(struct igc_adapter *adapter)
 	 * false until the igc_check_for_link establishes link
 	 * for copper adapters ONLY
 	 */
-	switch (hw->phy.media_type) {
-	case igc_media_type_copper:
+	// switch (hw->phy.media_type) {
+	// case igc_media_type_copper:
 		if (!hw->mac.get_link_status)
 			return true;
 		hw->mac.ops.check_for_link(hw);
 		link_active = !hw->mac.get_link_status;
-		break;
-	default:
-	case igc_media_type_unknown:
-		break;
-	}
+	// 	break;
+	// default:
+	// case igc_media_type_unknown:
+	// 	break;
+	// }
 
-	if (hw->mac.type == igc_i225 &&
-	    hw->phy.id == I225_I_PHY_ID) {
+	if (hw->mac.type == igc_i225 /*&&
+	    hw->phy.id == I225_I_PHY_ID*/) {
 		if (!netif_carrier_ok(adapter->netdev)) {
 			adapter->flags &= ~IGC_FLAG_NEED_LINK_UPDATE;
 		} else if (!(adapter->flags & IGC_FLAG_NEED_LINK_UPDATE)) {
