@@ -5647,7 +5647,7 @@ static int __init igc_init_module(void)
 
 	pr_info("%s %s\n", igc_driver_name, igc_driver_string);
 	pr_info("%s %s\n", igc_driver_name, igc_copyright);
-	pr_info("%s %s\n", igc_driver_name, igc_driver_version);
+	pr_info("%s version %s\n", igc_driver_name, igc_driver_version);
 
 	ret = pci_register_driver(&igc_driver);
 	return ret;
