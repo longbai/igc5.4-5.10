@@ -46,6 +46,8 @@ module_param(debug, int, 0);
 MODULE_PARM_DESC(debug, "Debug level (0=none,...,16=all)");
 
 char igc_driver_name[] = "igc_226";
+char igc_driver_version[] = DRV_VERSION;
+
 static const char igc_driver_string[] = DRV_SUMMARY;
 static const char igc_copyright[] =
 	"Copyright(c) 2018 Intel Corporation.";
@@ -5643,8 +5645,9 @@ static int __init igc_init_module(void)
 {
 	int ret;
 
-	pr_info("%s\n", igc_driver_string);
-	pr_info("%s\n", igc_copyright);
+	pr_info("%s %s\n", igc_driver_name, igc_driver_string);
+	pr_info("%s %s\n", igc_driver_name, igc_copyright);
+	pr_info("%s %s\n", igc_driver_name, igc_driver_version);
 
 	ret = pci_register_driver(&igc_driver);
 	return ret;
